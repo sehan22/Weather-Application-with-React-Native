@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import {MagnifyingGlassIcon} from 'react-native-heroicons/outline';
+import {MapPinIcon} from 'react-native-heroicons/solid';
 
 export default function HomeScreen() {
   const [showSearch, toggleSearch] = useState(false);
@@ -41,7 +42,7 @@ export default function HomeScreen() {
               alignItems: 'center',
               borderRadius: 100,
               backgroundColor: showSearch
-                ? 'rgba(255, 255, 255,0.2)'
+                ? 'rgba(255, 255, 255, 0.2)'
                 : 'transparent',
             }}>
             {showSearch ? (
@@ -71,27 +72,30 @@ export default function HomeScreen() {
           {locations.length > 0 && showSearch ? (
             <View
               style={{
-                position: 'absolute',
+                position: 'relative',
                 width: '100%',
                 backgroundColor: '#D1D5DB',
-                marginTop: '64px',
+                marginTop: 8,
+                borderRadius: 20,
+                overflow: 'hidden',
               }}>
               {locations.map((loc, index) => {
+                let showBorder = index + 1 != locations.length;
                 return (
                   <TouchableOpacity
                     key={index}
                     style={{
                       display: 'flex',
                       flexDirection: 'row',
-                      justifyContent: 'center',
                       alignItems: 'center',
                       borderTopWidth: 0,
-                      padding: '12px',
-                      paddingHorizontal: '16px',
-                      marginBottom: `4px`,
-                      borderBottomWidth: 2,
-                      borderBottomColor: '#9CA3AF',
+                      padding: 10,
+                      paddingHorizontal: 16,
+                      marginBottom: 4,
+                      borderBottomWidth: showBorder ? 1 : 0,
+                      borderBottomColor: 'rgba(0, 0, 0,0.1)',
                     }}>
+                    <MapPinIcon size={20} color={'gray'} />
                     <Text>London, United Kindom</Text>
                   </TouchableOpacity>
                 );
