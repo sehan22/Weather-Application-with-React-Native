@@ -15,6 +15,11 @@ import {MapPinIcon} from 'react-native-heroicons/solid';
 export default function HomeScreen() {
   const [showSearch, toggleSearch] = useState(false);
   const [locations, setLocations] = useState([1, 2, 3]);
+
+  const handleLocation = (location: any) => {
+    console.log('location : ', location);
+  };
+
   return (
     <View style={{flex: 1, position: 'relative'}}>
       <StatusBar barStyle={'light-content'} />
@@ -83,25 +88,76 @@ export default function HomeScreen() {
                 let showBorder = index + 1 != locations.length;
                 return (
                   <TouchableOpacity
+                    onPress={() => {
+                      handleLocation(loc);
+                    }}
                     key={index}
                     style={{
                       display: 'flex',
                       flexDirection: 'row',
                       alignItems: 'center',
                       borderTopWidth: 0,
-                      padding: 10,
+                      padding: 16,
                       paddingHorizontal: 16,
                       marginBottom: 4,
                       borderBottomWidth: showBorder ? 1 : 0,
                       borderBottomColor: 'rgba(0, 0, 0,0.1)',
                     }}>
                     <MapPinIcon size={20} color={'gray'} />
-                    <Text>London, United Kindom</Text>
+                    <Text style={{fontSize: 14, marginStart: 8}}>
+                      London, United Kindom
+                    </Text>
                   </TouchableOpacity>
                 );
               })}
             </View>
           ) : null}
+        </View>
+
+        {/* forecast section */}
+        <View
+          style={{
+            marginHorizontal: 16,
+            display: 'flex',
+            justifyContent: 'space-around',
+            flex: 1,
+            marginBottom: 2,
+          }}>
+          {/* Location */}
+          <Text
+            style={{
+              color: 'white',
+              textAlign: 'center',
+              fontSize: 24,
+              fontWeight: 'bold',
+            }}>
+            London,
+            <Text
+              style={{
+                color: '#E0E0E0',
+                textAlign: 'center',
+                fontSize: 18,
+                fontWeight: 500,
+              }}>
+              United Kingdom
+            </Text>
+          </Text>
+          {/* Weather image */}
+          <View
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
+            }}>
+            <Image
+              style={{
+                width: 208,
+                height: 208,
+                resizeMode: 'contain',
+              }}
+              source={require('../assets/images/partlycloudy.png')}
+            />
+          </View>
         </View>
       </SafeAreaView>
     </View>
