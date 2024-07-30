@@ -7,9 +7,13 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 
-import {MagnifyingGlassIcon} from 'react-native-heroicons/outline';
+import {
+  CalendarDaysIcon,
+  MagnifyingGlassIcon,
+} from 'react-native-heroicons/outline';
 import {MapPinIcon} from 'react-native-heroicons/solid';
 
 export default function HomeScreen() {
@@ -34,7 +38,7 @@ export default function HomeScreen() {
         <View
           style={{
             height: '7%',
-            marginHorizontal: '16px',
+            marginHorizontal: 4,
             position: 'relative',
             zIndex: 50,
             marginTop: 10,
@@ -198,13 +202,12 @@ export default function HomeScreen() {
                 justifyContent: 'space-between',
                 flexDirection: 'row',
                 alignItems: 'center',
-                paddingHorizontal: 8,
                 gap: 8,
               }}>
               <Image
                 style={{
-                  height: 32,
-                  width: 32,
+                  height: 24,
+                  width: 24,
                 }}
                 source={require('../assets/icons/wind.png')}
               />
@@ -221,15 +224,14 @@ export default function HomeScreen() {
                 justifyContent: 'space-between',
                 flexDirection: 'row',
                 alignItems: 'center',
-                paddingHorizontal: 8,
                 gap: 8,
               }}>
               <Image
                 style={{
-                  height: 32,
-                  width: 32,
+                  height: 24,
+                  width: 24,
                 }}
-                source={require('../assets/icons/wind.png')}
+                source={require('../assets/icons/drop.png')}
               />
               <Text
                 style={{color: 'white', fontWeight: 'semibold', fontSize: 16}}>
@@ -244,15 +246,14 @@ export default function HomeScreen() {
                 justifyContent: 'space-between',
                 flexDirection: 'row',
                 alignItems: 'center',
-                paddingHorizontal: 8,
                 gap: 8,
               }}>
               <Image
                 style={{
-                  height: 32,
-                  width: 32,
+                  height: 24,
+                  width: 24,
                 }}
-                source={require('../assets/icons/wind.png')}
+                source={require('../assets/icons/sun.png')}
               />
               <Text
                 style={{color: 'white', fontWeight: 'semibold', fontSize: 16}}>
@@ -260,6 +261,144 @@ export default function HomeScreen() {
               </Text>
             </View>
           </View>
+        </View>
+
+        {/* forecast for next days */}
+        <View
+          style={{
+            marginBottom: 8,
+            gap: 12,
+          }}>
+          <View
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignContent: 'center',
+              marginHorizontal: 20,
+              marginTop: 20,
+              gap: 8,
+            }}>
+            <CalendarDaysIcon size={22} color={'white'} />
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 16,
+              }}>
+              Daily Forecast
+            </Text>
+          </View>
+
+          <ScrollView
+            horizontal
+            contentContainerStyle={{paddingHorizontal: 15}}
+            showsHorizontalScrollIndicator={false}>
+            <View
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 96,
+                borderRadius: 24,
+                paddingVertical: 12,
+                gap: 2,
+                marginRight: 16,
+                backgroundColor: 'rgba(255, 255, 255,0.15)',
+              }}>
+              <Image
+                source={require('../assets/images/heavyrain.png')}
+                style={{
+                  width: 48,
+                  height: 48,
+                }}
+              />
+              <Text style={{color: 'white'}}>Monday</Text>
+              <Text
+                style={{color: 'white', fontSize: 20, fontWeight: 'semibold'}}>
+                23&#176;
+              </Text>
+            </View>
+
+            {/*  */}
+            <View
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 96,
+                borderRadius: 24,
+                paddingVertical: 12,
+                gap: 2,
+                marginRight: 16,
+                backgroundColor: 'rgba(255, 255, 255,0.15)',
+              }}>
+              <Image
+                source={require('../assets/images/heavyrain.png')}
+                style={{
+                  width: 48,
+                  height: 48,
+                }}
+              />
+              <Text style={{color: 'white'}}>Monday</Text>
+              <Text
+                style={{color: 'white', fontSize: 20, fontWeight: 'semibold'}}>
+                23&#176;
+              </Text>
+            </View>
+
+            {/*  */}
+            <View
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 96,
+                borderRadius: 24,
+                paddingVertical: 12,
+                gap: 2,
+                marginRight: 16,
+                backgroundColor: 'rgba(255, 255, 255,0.15)',
+              }}>
+              <Image
+                source={require('../assets/images/heavyrain.png')}
+                style={{
+                  width: 48,
+                  height: 48,
+                }}
+              />
+              <Text style={{color: 'white'}}>Monday</Text>
+              <Text
+                style={{color: 'white', fontSize: 20, fontWeight: 'semibold'}}>
+                23&#176;
+              </Text>
+            </View>
+
+            {/*  */}
+            <View
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 96,
+                borderRadius: 24,
+                paddingVertical: 12,
+                gap: 2,
+                marginRight: 16,
+                backgroundColor: 'rgba(255, 255, 255,0.15)',
+              }}>
+              <Image
+                source={require('../assets/images/heavyrain.png')}
+                style={{
+                  width: 48,
+                  height: 48,
+                }}
+              />
+              <Text style={{color: 'white'}}>Monday</Text>
+              <Text
+                style={{color: 'white', fontSize: 20, fontWeight: 'semibold'}}>
+                23&#176;
+              </Text>
+            </View>
+          </ScrollView>
         </View>
       </SafeAreaView>
     </View>
