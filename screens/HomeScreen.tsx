@@ -182,6 +182,84 @@ export default function HomeScreen() {
               Partly Cloudy
             </Text>
           </View>
+
+          {/* other stats */}
+          <View
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              paddingHorizontal: 16,
+            }}>
+            {/*  */}
+            <View
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingHorizontal: 8,
+                gap: 8,
+              }}>
+              <Image
+                style={{
+                  height: 32,
+                  width: 32,
+                }}
+                source={require('../assets/icons/wind.png')}
+              />
+              <Text
+                style={{color: 'white', fontWeight: 'semibold', fontSize: 16}}>
+                22km
+              </Text>
+            </View>
+
+            {/*  */}
+            <View
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingHorizontal: 8,
+                gap: 8,
+              }}>
+              <Image
+                style={{
+                  height: 32,
+                  width: 32,
+                }}
+                source={require('../assets/icons/wind.png')}
+              />
+              <Text
+                style={{color: 'white', fontWeight: 'semibold', fontSize: 16}}>
+                22%
+              </Text>
+            </View>
+
+            {/*  */}
+            <View
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingHorizontal: 8,
+                gap: 8,
+              }}>
+              <Image
+                style={{
+                  height: 32,
+                  width: 32,
+                }}
+                source={require('../assets/icons/wind.png')}
+              />
+              <Text
+                style={{color: 'white', fontWeight: 'semibold', fontSize: 16}}>
+                6.05AM
+              </Text>
+            </View>
+          </View>
         </View>
       </SafeAreaView>
     </View>
