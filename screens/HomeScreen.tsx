@@ -16,16 +16,26 @@ import {
 } from 'react-native-heroicons/outline';
 import {MapPinIcon} from 'react-native-heroicons/solid';
 import {debounce} from 'lodash';
+import {fetchLocations} from '../api/weather';
 
 export default function HomeScreen() {
   const [showSearch, toggleSearch] = useState(false);
-  const [locations, setLocations] = useState([1, 2, 3]);
+  const [locations, setLocations] = useState([]);
 
   const handleSearch = (value: string) => {
-    console.log('value : ', value);
+    //Fetch Location
+    if (value.length > 2) {
+      fetchLocations({cityName: value})
+        .then((data: any) => {
+          setLocations(data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   };
 
-  const handleTextDebounce = useCallback(debounce(handleSearch, 120), []);
+  const handleTextDebounce = useCallback(debounce(handleSearch, 1200), []);
 
   const handleLocation = (location: any) => {
     console.log('location : ', location);
@@ -96,7 +106,7 @@ export default function HomeScreen() {
                 borderRadius: 20,
                 overflow: 'hidden',
               }}>
-              {locations.map((loc, index) => {
+              {locations.map((loc: any, index) => {
                 let showBorder = index + 1 != locations.length;
                 return (
                   <TouchableOpacity
@@ -117,7 +127,7 @@ export default function HomeScreen() {
                     }}>
                     <MapPinIcon size={20} color={'gray'} />
                     <Text style={{fontSize: 14, marginStart: 8}}>
-                      London, United Kindom
+                      {loc?.name}, {loc?.country}
                     </Text>
                   </TouchableOpacity>
                 );
