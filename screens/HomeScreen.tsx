@@ -139,6 +139,7 @@ export default function HomeScreen() {
                 fontSize: 18,
                 fontWeight: 500,
               }}>
+              {' '}
               United Kingdom
             </Text>
           </Text>
@@ -157,6 +158,29 @@ export default function HomeScreen() {
               }}
               source={require('../assets/images/partlycloudy.png')}
             />
+          </View>
+
+          {/* degree celcius */}
+          <View style={{paddingVertical: 8}}>
+            <Text
+              style={{
+                textAlign: 'center',
+                fontWeight: 'bold',
+                color: 'white',
+                fontSize: 60,
+              }}>
+              23&#176;
+            </Text>
+
+            <Text
+              style={{
+                textAlign: 'center',
+                color: 'white',
+                fontSize: 16,
+                letterSpacing: 1,
+              }}>
+              Partly Cloudy
+            </Text>
           </View>
         </View>
       </SafeAreaView>
