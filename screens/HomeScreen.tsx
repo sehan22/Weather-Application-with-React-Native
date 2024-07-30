@@ -16,11 +16,12 @@ import {
 } from 'react-native-heroicons/outline';
 import {MapPinIcon} from 'react-native-heroicons/solid';
 import {debounce} from 'lodash';
-import {fetchLocations} from '../api/weather';
+import {fetchLocations, fetchWeatherForecast} from '../api/weather';
 
 export default function HomeScreen() {
   const [showSearch, toggleSearch] = useState(false);
   const [locations, setLocations] = useState([]);
+  const [weatherForecast, setWeatherForecast] = useState({});
 
   const handleSearch = (value: string) => {
     //Fetch Location
@@ -38,7 +39,18 @@ export default function HomeScreen() {
   const handleTextDebounce = useCallback(debounce(handleSearch, 1200), []);
 
   const handleLocation = (location: any) => {
-    console.log('location : ', location);
+    setLocations([]);
+    toggleSearch(false);
+    fetchWeatherForecast({
+      cityName: location.name,
+      days: '7',
+    })
+      .then(data => {
+        setWeatherForecast(data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (
