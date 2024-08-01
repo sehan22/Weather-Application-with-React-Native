@@ -44,7 +44,7 @@ export default function HomeScreen() {
     toggleSearch(false);
     fetchWeatherForecast({
       cityName: location.name,
-      days: '7',
+      days: '8',
     })
       .then(data => {
         setWeatherForecast(data);
@@ -247,7 +247,7 @@ export default function HomeScreen() {
               />
               <Text
                 style={{color: 'white', fontWeight: 'semibold', fontSize: 16}}>
-                22km
+                {current?.wind_kph}km
               </Text>
             </View>
 
@@ -269,7 +269,7 @@ export default function HomeScreen() {
               />
               <Text
                 style={{color: 'white', fontWeight: 'semibold', fontSize: 16}}>
-                22%
+                {current?.humidity}%
               </Text>
             </View>
 
@@ -326,112 +326,50 @@ export default function HomeScreen() {
             horizontal
             contentContainerStyle={{paddingHorizontal: 15}}
             showsHorizontalScrollIndicator={false}>
-            <View
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: 96,
-                borderRadius: 24,
-                paddingVertical: 12,
-                gap: 2,
-                marginRight: 16,
-                backgroundColor: 'rgba(255, 255, 255,0.15)',
-              }}>
-              <Image
-                source={require('../assets/images/heavyrain.png')}
-                style={{
-                  width: 48,
-                  height: 48,
-                }}
-              />
-              <Text style={{color: 'white'}}>Monday</Text>
-              <Text
-                style={{color: 'white', fontSize: 20, fontWeight: 'semibold'}}>
-                23&#176;
-              </Text>
-            </View>
+            {
+              //@ts-ignore
+              weatherForecast?.forecast?.forecastday?.map((item, index) => {
+                let date = new Date(item.date);
+                let options = {weekday: 'long'};
+                //@ts-ignore
+                let dayName = date.toLocaleDateString('en-Us', options);
+                dayName = dayName.split(',')[0];
 
-            {/*  */}
-            <View
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: 96,
-                borderRadius: 24,
-                paddingVertical: 12,
-                gap: 2,
-                marginRight: 16,
-                backgroundColor: 'rgba(255, 255, 255,0.15)',
-              }}>
-              <Image
-                source={require('../assets/images/heavyrain.png')}
-                style={{
-                  width: 48,
-                  height: 48,
-                }}
-              />
-              <Text style={{color: 'white'}}>Monday</Text>
-              <Text
-                style={{color: 'white', fontSize: 20, fontWeight: 'semibold'}}>
-                23&#176;
-              </Text>
-            </View>
-
-            {/*  */}
-            <View
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: 96,
-                borderRadius: 24,
-                paddingVertical: 12,
-                gap: 2,
-                marginRight: 16,
-                backgroundColor: 'rgba(255, 255, 255,0.15)',
-              }}>
-              <Image
-                source={require('../assets/images/heavyrain.png')}
-                style={{
-                  width: 48,
-                  height: 48,
-                }}
-              />
-              <Text style={{color: 'white'}}>Monday</Text>
-              <Text
-                style={{color: 'white', fontSize: 20, fontWeight: 'semibold'}}>
-                23&#176;
-              </Text>
-            </View>
-
-            {/*  */}
-            <View
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: 96,
-                borderRadius: 24,
-                paddingVertical: 12,
-                gap: 2,
-                marginRight: 16,
-                backgroundColor: 'rgba(255, 255, 255,0.15)',
-              }}>
-              <Image
-                source={require('../assets/images/heavyrain.png')}
-                style={{
-                  width: 48,
-                  height: 48,
-                }}
-              />
-              <Text style={{color: 'white'}}>Monday</Text>
-              <Text
-                style={{color: 'white', fontSize: 20, fontWeight: 'semibold'}}>
-                23&#176;
-              </Text>
-            </View>
+                return (
+                  <View
+                    key={index}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      width: 96,
+                      borderRadius: 24,
+                      paddingVertical: 12,
+                      gap: 2,
+                      marginRight: 16,
+                      backgroundColor: 'rgba(255, 255, 255,0.15)',
+                    }}>
+                    <Image
+                      //@ts-ignore
+                      source={weatherImages[item?.day?.condition?.text]}
+                      style={{
+                        width: 48,
+                        height: 48,
+                      }}
+                    />
+                    <Text style={{color: 'white'}}>{item.date}</Text>
+                    <Text
+                      style={{
+                        color: 'white',
+                        fontSize: 20,
+                        fontWeight: 'semibold',
+                      }}>
+                      {item?.day?.avgtemp_c}&#176;
+                    </Text>
+                  </View>
+                );
+              })
+            }
           </ScrollView>
         </View>
       </SafeAreaView>
