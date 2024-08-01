@@ -332,10 +332,10 @@ export default function HomeScreen() {
                 let date = new Date(item.date);
                 let options = {weekday: 'long'};
                 //@ts-ignore
-                let dayName = date.toLocaleDateString('en-Us', options);
+                let dayName = date.toLocaleDateString('en-US', options);
                 dayName = dayName.split(',')[0];
 
-                return (
+                return index !== 0 ? (
                   <View
                     key={index}
                     style={{
@@ -357,7 +357,7 @@ export default function HomeScreen() {
                         height: 48,
                       }}
                     />
-                    <Text style={{color: 'white'}}>{item.date}</Text>
+                    <Text style={{color: 'white'}}>{dayName}</Text>
                     <Text
                       style={{
                         color: 'white',
@@ -367,6 +367,8 @@ export default function HomeScreen() {
                       {item?.day?.avgtemp_c}&#176;
                     </Text>
                   </View>
+                ) : (
+                  <></>
                 );
               })
             }
