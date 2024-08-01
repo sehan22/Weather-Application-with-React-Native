@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  KeyboardAvoidingView,
 } from 'react-native';
 
 import {
@@ -88,8 +89,14 @@ export default function HomeScreen() {
   const {current, location}: any = weatherForecast;
 
   return (
-    <View style={{display: 'flex', flex: 1, position: 'relative'}}>
-      <StatusBar barStyle={'light-content'} />
+    <KeyboardAvoidingView
+      style={{
+        display: 'flex',
+        flex: 1,
+        position: 'relative',
+        backgroundColor: 'white',
+      }}>
+      <StatusBar barStyle={'light-content'} backgroundColor={'blue'} hidden />
       <Image
         blurRadius={70}
         style={{
@@ -441,6 +448,6 @@ export default function HomeScreen() {
           </View>
         </SafeAreaView>
       )}
-    </View>
+    </KeyboardAvoidingView>
   );
 }
