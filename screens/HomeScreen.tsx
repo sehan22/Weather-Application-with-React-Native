@@ -19,6 +19,7 @@ import {debounce} from 'lodash';
 import {fetchLocations, fetchWeatherForecast} from '../api/weather';
 import {weatherImages} from '../constants';
 import * as Progress from 'react-native-progress';
+import {getData, storeData} from '../utils/asyncStorage';
 
 export default function HomeScreen() {
   const [showSearch, toggleSearch] = useState(false);
@@ -52,6 +53,7 @@ export default function HomeScreen() {
       .then(data => {
         setWeatherForecast(data);
         setLoading(false);
+        storeData('city', location.name);
       })
       .catch(err => {
         console.log(err);
@@ -64,6 +66,11 @@ export default function HomeScreen() {
   }, []);
 
   const fetchMyWeatherData = async () => {
+    let myCity = await getData('city');
+    let cityName = 'Islamabad';
+
+    if (myCity) cityName = myCity;
+
     fetchWeatherForecast({
       cityName: 'New York',
       days: '8',
@@ -81,12 +88,17 @@ export default function HomeScreen() {
   const {current, location}: any = weatherForecast;
 
   return (
-    <View style={{flex: 1, position: 'relative'}}>
+    <View style={{display: 'flex', flex: 1, position: 'relative'}}>
       <StatusBar barStyle={'light-content'} />
       <Image
         blurRadius={70}
-        style={{position: 'absolute', width: '100%', height: '100%'}}
-        source={require('../assets/images/bg.png')}
+        style={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+        }}
+        source={require('../assets/images/bg.jpg')}
       />
 
       {loading ? (
@@ -101,7 +113,7 @@ export default function HomeScreen() {
           <Progress.CircleSnail thickness={10} size={140} color={'#FFFFFF'} />
         </View>
       ) : (
-        <SafeAreaView style={{display: 'flex', flex: 1, padding: 8}}>
+        <SafeAreaView style={{display: 'flex', flex: 1}}>
           {/* Search Section */}
           <View
             style={{
@@ -416,6 +428,9 @@ export default function HomeScreen() {
                           fontWeight: 'semibold',
                         }}>
                         {item?.day?.avgtemp_c}&#176;
+                      </Text>
+                      <Text style={{fontSize: 12}}>
+                        {item?.day?.condition?.text}
                       </Text>
                     </View>
                   ) : (
