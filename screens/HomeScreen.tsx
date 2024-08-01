@@ -154,6 +154,7 @@ export default function HomeScreen() {
                   }}
                 />
               ) : null}
+
               <TouchableOpacity
                 onPress={() => toggleSearch(!showSearch)}
                 style={{
@@ -214,27 +215,47 @@ export default function HomeScreen() {
               justifyContent: 'space-evenly',
               flex: 1,
               marginBottom: 2,
+              marginTop: 16,
             }}>
             {/* Location */}
-            <Text
+
+            <View
               style={{
-                color: 'white',
-                textAlign: 'center',
-                fontSize: 24,
-                fontWeight: 'bold',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'flex-start',
               }}>
-              {location?.name},
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  gap: 4,
+                }}>
+                <MapPinIcon size={24} color={'white'} />
+                <Text
+                  style={{
+                    color: 'white',
+                    textAlign: 'center',
+                    fontSize: 24,
+                    fontWeight: 'bold',
+                  }}>
+                  {location?.name}
+                </Text>
+              </View>
               <Text
                 style={{
                   color: '#E0E0E0',
                   textAlign: 'center',
                   fontSize: 18,
-                  fontWeight: 500,
+                  fontWeight: 700,
                 }}>
                 {' '}
                 {location?.country}
               </Text>
-            </Text>
+            </View>
+
             {/* Weather image */}
             <View
               style={{
@@ -244,8 +265,9 @@ export default function HomeScreen() {
               }}>
               <Image
                 style={{
-                  width: 208,
-                  height: 208,
+                  width: 180,
+                  height: 180,
+                  marginTop: 16,
                   resizeMode: 'contain',
                 }}
                 //@ts-ignore
@@ -271,6 +293,11 @@ export default function HomeScreen() {
                   color: 'white',
                   fontSize: 16,
                   letterSpacing: 1,
+                  backgroundColor: 'rgba(255, 255, 255,0.15)',
+                  padding: 5,
+                  paddingHorizontal: 15,
+                  paddingVertical: 8,
+                  borderRadius: 10,
                 }}>
                 {current?.condition.text}
               </Text>
