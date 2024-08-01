@@ -17,6 +17,7 @@ import {
 import {MapPinIcon} from 'react-native-heroicons/solid';
 import {debounce} from 'lodash';
 import {fetchLocations, fetchWeatherForecast} from '../api/weather';
+import {weatherImages} from '../constants';
 
 export default function HomeScreen() {
   const [showSearch, toggleSearch] = useState(false);
@@ -52,6 +53,8 @@ export default function HomeScreen() {
         console.log(err);
       });
   };
+
+  const {current, location}: any = weatherForecast;
 
   return (
     <View style={{flex: 1, position: 'relative'}}>
@@ -165,7 +168,7 @@ export default function HomeScreen() {
               fontSize: 24,
               fontWeight: 'bold',
             }}>
-            London,
+            {location?.name},
             <Text
               style={{
                 color: '#E0E0E0',
@@ -174,7 +177,7 @@ export default function HomeScreen() {
                 fontWeight: 500,
               }}>
               {' '}
-              United Kingdom
+              {location?.country}
             </Text>
           </Text>
           {/* Weather image */}
@@ -190,7 +193,8 @@ export default function HomeScreen() {
                 height: 208,
                 resizeMode: 'contain',
               }}
-              source={require('../assets/images/partlycloudy.png')}
+              //@ts-ignore
+              source={weatherImages[current?.condition?.text]}
             />
           </View>
 
@@ -203,7 +207,7 @@ export default function HomeScreen() {
                 color: 'white',
                 fontSize: 60,
               }}>
-              23&#176;
+              {current?.temp_c}&#176;
             </Text>
 
             <Text
@@ -213,7 +217,7 @@ export default function HomeScreen() {
                 fontSize: 16,
                 letterSpacing: 1,
               }}>
-              Partly Cloudy
+              {current?.condition.text}
             </Text>
           </View>
 
