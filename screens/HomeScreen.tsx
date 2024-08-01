@@ -162,10 +162,10 @@ export default function HomeScreen() {
             {locations.length > 0 && showSearch ? (
               <View
                 style={{
-                  position: 'relative',
+                  position: 'absolute',
                   width: '100%',
                   backgroundColor: '#D1D5DB',
-                  marginTop: 8,
+                  marginTop: 64,
                   borderRadius: 20,
                   overflow: 'hidden',
                 }}>
@@ -204,7 +204,7 @@ export default function HomeScreen() {
             style={{
               marginHorizontal: 16,
               display: 'flex',
-              justifyContent: 'space-around',
+              justifyContent: 'space-evenly',
               flex: 1,
               marginBottom: 2,
             }}>
@@ -274,7 +274,7 @@ export default function HomeScreen() {
               style={{
                 display: 'flex',
                 flexDirection: 'row',
-                justifyContent: 'space-between',
+                justifyContent: 'space-around',
                 paddingHorizontal: 16,
               }}>
               {/*  */}
@@ -283,7 +283,6 @@ export default function HomeScreen() {
                   display: 'flex',
                   justifyContent: 'space-between',
                   flexDirection: 'row',
-                  alignItems: 'center',
                   gap: 8,
                 }}>
                 <Image
