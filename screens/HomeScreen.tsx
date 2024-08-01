@@ -455,15 +455,17 @@ export default function HomeScreen() {
                       />
                       <Text style={{color: 'white'}}>{dayName}</Text>
                       <Text
+                        style={{fontSize: 10, fontWeight: 700, color: 'white'}}
+                        numberOfLines={1}>
+                        {item?.day?.condition?.text}
+                      </Text>
+                      <Text
                         style={{
                           color: 'white',
                           fontSize: 20,
-                          fontWeight: 'semibold',
+                          fontWeight: 'bold',
                         }}>
                         {item?.day?.avgtemp_c}&#176;
-                      </Text>
-                      <Text style={{fontSize: 12}}>
-                        {item?.day?.condition?.text}
                       </Text>
                     </View>
                   ) : (
